@@ -12,7 +12,7 @@ var Promise = require('bluebird');
 // use node A+ promises
 mongoose.Promise = Promise;
 
-mongoose.connect('mongodb://localhost:27017/survey');
+mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
 // Create Express web app with some useful middleware
 var app = express();
