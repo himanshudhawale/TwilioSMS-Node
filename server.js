@@ -1,28 +1,25 @@
-var path = require('path');
-var express = require('express');
-var morgan = require('morgan');
-var mongoose = require('mongoose');
-var urlencoded = require('body-parser').urlencoded;
-var config = require('./config');
-var voice = require('./_helper/voice');
-var message = require('./_helper/message');
-var results = require('./_helper/results');
-var Promise = require('bluebird');
+const express=require('express');
+const app=express();
+const mongoose = require('mongoose');
+const dotenv= require('dotenv');
+const bodyParser = require('body-parser');
+dotenv.config();
+const accountSID = process.env.TWILIO_ACCOUNT_SID;
+const port = process.env.PORT || 5000;
+const authToken = process.env.TWILIO_AUHT_TOKEN;
+const client = require('twilio')(accountSID,authToken);
 
-mongoose.Promise = Promise;
+app.use(bodyParser.urlencoded({extended:false}));
 
-mongoose.connect('mongodb://localhost:27017/survey');
+const twilioRoutes = require( './routes/route');
 
-var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(urlencoded({ extended: true }));
-app.use(morgan('combined'));
+mongoose.connect(
+    process.env.DB_CONNECT, { useNewUrlParser:true , useUnifiedTopology: true } , ()=>{
+        console.log('Connected to DB');
+    }
+);
 
-//Webhook
-app.post('/voice', voice.interview);
-app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
-app.post('/message', message);
+app.use('/api/twilio',  twilioRoutes);
 
-app.get('/results', results);
-
-module.exports = app;
+app.use(express.json());
+app.listen(port, ()=> console.log('Server Up. Listening to port 5000.........'));
