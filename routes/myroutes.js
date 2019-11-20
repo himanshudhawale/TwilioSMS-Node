@@ -140,15 +140,49 @@ router.post('/register' , async (req,res) => {
 // symptom
             case "2":
                 let currentList1 = survey.symptom;
-                let symp = currentList1[messageBody-1];
+                // let symp = currentList1[messageBody-1];
                 let currentMap = survey.responseMap;
                 currentMap.set(symp, "-1");
                 let ss = currentList1.filter(e => e !== symp);
 
+                if (messageBody == 0) {
                 await client.messages.create({
-                        to : from,
-                        from : '+19067537001',
-                        body : "On a scale from 0 (none) to 4 (severe), how would you rate your " + symp + " in the last 24 hours?"});
+                  to: from,
+                  from: '+19067537001',
+                  body: "Thank you and we will check with you later."
+                });
+                await surveyModel.findOneAndUpdate({ phoneNo: from },
+                  {
+                      $set: {
+                          count: null
+                      }
+                  });
+
+                }
+                else if (messageBody > 0 && messageBody <= currentList1.length) {
+                    let symp = currentList1[messageBody - 1];
+                    await client.messages.create({
+                        to: from,
+                        from: '+19067537001',
+                        body: "On a scale from 0 (none) to 4 (severe), how would you rate your " + symp + " in the last 24 hours?"
+                    });
+                    var ss = currentList1.filter(e => e !== symp);
+                    await phoneModel.findOneAndUpdate({ phoneNo: from },
+                        {
+                            $set: {
+                                status: "3",
+                                currentSymptom: symp,
+                                symptoms: ss
+                            }
+                        });
+                }
+                else {
+                    await client.messages.create({
+                        to: from,
+                        from: '+19067537001',
+                        body: "Please enter a number from 0 to " + currentList1.length
+                    });
+                }
                 await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
@@ -196,7 +230,6 @@ router.post('/register' , async (req,res) => {
                                       count: null
                                   }
                               });
-                          res.end();
                           return;
                       }
                       let currentString = "Please indicate your symptom ";
@@ -248,8 +281,6 @@ router.post('/register' , async (req,res) => {
                                     count: null
                                 }
                             });
-                        res.end();
-                        return;
                     }
                     let currentString = "Please indicate your symptom ";
                     for (let i = 0; i < currentList.length; i++) {
@@ -304,8 +335,6 @@ router.post('/register' , async (req,res) => {
                                     count: null
                                 }
                             });
-                        res.end();
-                        return;
                     }
                     let currentString = "Please indicate your symptom ";
                     for (let i = 0; i < currentList.length; i++) {
@@ -357,8 +386,6 @@ router.post('/register' , async (req,res) => {
                                     count: null
                                 }
                             });
-                        res.end();
-                        return;
                     }
                     let currentString = "Please indicate your symptom ";
                     for (let i = 0; i < currentList.length; i++) {
@@ -394,7 +421,6 @@ router.post('/register' , async (req,res) => {
 
 // async function sendSymptomSMS(survey){
 //         let currentList = survey.symptom;
-//         symptomList = survey.symptom;
 //         let currentString = "Please indicate your symptom ";
 //         for(let i=0;i<currentList.length;i++)
 //         {
