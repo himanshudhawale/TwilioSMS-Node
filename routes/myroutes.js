@@ -66,7 +66,6 @@ router.post('/register' , async (req,res) => {
                  count: null
               }
           });
-             return;
 
         }
           let currentString = "Please indicate your symptom ";
@@ -114,7 +113,6 @@ router.post('/register' , async (req,res) => {
             //                         count: null
             //                     }
             //             });
-            //             return;
             //
             //         }
             //         let currentString = "Please indicate your symptom ";
@@ -234,7 +232,6 @@ router.post('/register' , async (req,res) => {
                                       count: null
                                   }
                               });
-                          return;
                       }
                       let currentString = "Please indicate your symptom ";
                       for (let i = 0; i < currentList.length; i++) {
