@@ -43,7 +43,24 @@ router.post('/register' , async (req,res) => {
     {
       //Enrolled
             case "1":
+
                     let currentList = survey.symptom;
+                    if(currentList.length<=2)
+                    {
+                        await client.messages.create({
+                            to: from,
+                            from: '+19067537001',
+                            body: "Thank you and see you soon"
+                        });
+                        await surveyModel.findOneAndUpdate({ phoneNo: from },
+                            {
+                                $set: {
+                                    count: null
+                                }
+                        });
+                        return;
+
+                    }
                     let currentString = "Please indicate your symptom ";
                     for(let i=0;i<currentList.length;i++)
                     {
@@ -58,7 +75,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
-                                count : null
+                                count : 1
                             }
                         });
                     console.log("6");
