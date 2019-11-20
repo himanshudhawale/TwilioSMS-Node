@@ -27,7 +27,7 @@ const surveySchema = new Schema({
     rank3: {
       type: String
     },
-    count: {
+    status: {
       type: String
     }
 });

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const accountSID = process.env.ACCOUNT_SID;
-const surveyObject = require('../models/surveySchema');
+const surveyModel = require('../models/surveySchema');
 const authToken = process.env.AUHT_TOKEN;
 const client = require('twilio')(accountSID,authToken);
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
@@ -11,38 +11,38 @@ router.post('/register' , async (req,res) => {
     let from =  req.body.From;
     let msgBody = req.body.Body;
 
-    let phone = await surveyObject.findOne({phoneNo : from });
-    if(!phone && msgBody=="START"){
+    let survey = await surveyModel.findOne({phoneNo : from });
+    if(!survey && msgBody=="START"){
             let symptomList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
-            let phoneObj = new surveyObject({
+            let surveyObject = new surveyModel({
                 phoneNo : from,
-                status : "Registered",
-                symptoms : symptomList
+                symptoms : symptomList,
+                status : "Enrolled"
 
             })
             console.log("1");
             await client.messages.create({
                 to : from,
-                from : process.env.TWILIO_PHONE_NO,
+                from : '+19067537001',
                 body : 'Welcome to the study',})
             console.log("2");
-            phone = await phoneObj.save();
+            survey = await surveyObject.save();
             console.log("3");
     }
-    if(phone && msgBody=="START"){
+    if(survey && msgBody=="START"){
         let symptomList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
         await surveyObject.findOneAndUpdate({phoneNo : from},
             {
                 $set:{
-                    status : "Registered",
+                    status : "Enrolled",
                     symptoms : symptomList
             }
         });
         console.log("4");
     }
-    switch(phone.status)
+    switch(survey.status)
     {
-            case "Registered":
+            case "Enrolled":
                     let symptomList = phone.symptoms;
                     let symptString = "Please indicate your symptom ";
                     for(let i=0;i<symptomList.length;i++)
@@ -52,7 +52,7 @@ router.post('/register' , async (req,res) => {
                     symptString+= "(0) None";
                     await client.messages.create({
                         to : from,
-                        from : process.env.TWILIO_PHONE_NO,
+                        from : '+19067537001',
                         body : symptString})
                     console.log("5");
                     await surveyObject.findOneAndUpdate({phoneNo : from},
@@ -70,13 +70,13 @@ router.post('/register' , async (req,res) => {
                 let symp = symptomList[msgBody-1];
                 await client.messages.create({
                         to : from,
-                        from : process.env.TWILIO_PHONE_NO,
+                        from : '+19067537001',
                         body : "On a scale from 0 (none) to 4 (severe), how would you rate your " + symp + " in the last 24 hours?"});
                 await surveyObject.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
                                     status : "AwaitingScale",
-                                    currentSymptom : symp,
+                                    response1 : symp,
                                     symptoms : symp
                             }
                         });
@@ -84,8 +84,6 @@ router.post('/register' , async (req,res) => {
 
     }
 });
-
-
 
 
 module.exports = router;
