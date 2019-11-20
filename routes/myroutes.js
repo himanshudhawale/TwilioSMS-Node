@@ -53,7 +53,7 @@ router.post('/register' , async (req,res) => {
             }
         });
         console.log("4");
-        sendSymptomSMS();
+        // sendSymptomSMS();
         // currentList = survey.symptom;
         // if(currentList.length<=2)
         // {
