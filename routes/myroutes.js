@@ -102,6 +102,8 @@ router.post('/register' , async (req,res) => {
                 let symp = currentList1[messageBody-1];
                 let currentMap = survey.responseMap;
                 currentMap.set(symp, "-1");
+                let ss = currentList.filter(e => e !== symp);
+
                 await client.messages.create({
                         to : from,
                         from : '+19067537001',
@@ -112,7 +114,7 @@ router.post('/register' , async (req,res) => {
                                     count : "3",
                                     currentResponse: symp,
                                     responseMap : currentMap,
-                                    symptom : symp
+                                    symptom : ss
                             }
                         });
                 break;
