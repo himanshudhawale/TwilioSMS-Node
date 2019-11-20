@@ -142,7 +142,7 @@ router.post('/register' , async (req,res) => {
                             }
                         });
                     console.log("6");
-                    break;
+                    // break;
 
 // symptom
             case "2":
@@ -264,7 +264,7 @@ router.post('/register' , async (req,res) => {
 
                 }
                 //mild
-              else if(messageBody >=1 && messageBody <=2){
+                else if(messageBody >=1 && messageBody <=2){
                     await client.messages.create({
                         to : from,
                         from : '+19067537001',
@@ -320,7 +320,7 @@ router.post('/register' , async (req,res) => {
 
                 }
                 //moderate
-              else if(messageBody == 3){
+                else if(messageBody == 3){
                     await client.messages.create({
                         to : from,
                         from : '+19067537001',
@@ -372,7 +372,7 @@ router.post('/register' , async (req,res) => {
 
                 }
                 //severe
-              else if(messageBody == 4){
+                else if(messageBody == 4){
                     await client.messages.create({
                         to : from,
                         from : '+19067537001',
@@ -424,17 +424,18 @@ router.post('/register' , async (req,res) => {
                         });
 
 
+
                 }
                 //Edge case
-            else {
+                else {
                await client.messages.create({
                    to: from,
-                   from: '+19067537001',
+                   from: '+1906753vey7001',
                    body: "Please enter a number from 0 to 4"
                });
 
            }
-           break;
+                break;
     }
 });
 
