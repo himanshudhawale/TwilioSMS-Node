@@ -51,7 +51,7 @@ router.post('/register' , async (req,res) => {
             }
         });
         console.log("4");
-        // currentList = survey.symptom;
+        currentList = survey.symptom;
         if(currentList.length<=2)
         {
             await client.messages.create({
