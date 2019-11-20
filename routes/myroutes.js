@@ -150,7 +150,7 @@ router.post('/register' , async (req,res) => {
             case "2":
                 let currentList1 = survey.symptom;
                 // let symp = currentList1[messageBody-1];
-                let currentMap = survey.responseMap;
+                // let currentMap = survey.responseMap;
                 // currentMap.set(symp, "-1");
                 // let ss = currentList1.filter(e => e !== symp);
 
@@ -170,7 +170,7 @@ router.post('/register' , async (req,res) => {
                 }
                 else if (messageBody > 0 && messageBody <= currentList1.length) {
                     let symp = currentList1[messageBody - 1];
-                    currentMap.set(symp, "-1");
+                    // currentMap.set(symp, "-1");
 
                     await client.messages.create({
                         to: from,
@@ -183,9 +183,8 @@ router.post('/register' , async (req,res) => {
                             $set: {
                                 count: "3",
                                 currentResponse: symp,
-                                symptom: ss,
-                                responseMap: currentMap
-                            }
+                                symptom: ss
+                        }
                         });
                 }
                 else {
@@ -314,7 +313,7 @@ router.post('/register' , async (req,res) => {
 
     };
 
-// 
+//
 // async function sendSymptomSMS2(){
 //   let currentList = survey.symptom;
 //
