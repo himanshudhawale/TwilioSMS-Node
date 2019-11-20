@@ -8,9 +8,9 @@ var message = require('./routes/route');
 var Promise = require('bluebird');
 
 // use node A+ promises
-// mongoose.Promise = Promise;
-//
-// mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
+mongoose.Promise = Promise;
+
+mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
 // Create Express web app with some useful middleware
 var app = express();
