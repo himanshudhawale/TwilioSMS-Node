@@ -170,7 +170,7 @@ router.post('/register' , async (req,res) => {
                         return;
 
                     }
-                    let currentList = survey.symptom;
+                    // let currentList = survey.symptom;
                     symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
                     for(let i=0;i<currentList.length;i++)
@@ -232,7 +232,7 @@ router.post('/register' , async (req,res) => {
                         return;
 
                     }
-                    let currentList = survey.symptom;
+                    // let currentList = survey.symptom;
                     symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
                     for(let i=0;i<currentList.length;i++)
@@ -291,7 +291,7 @@ router.post('/register' , async (req,res) => {
                         return;
 
                     }
-                    let currentList = survey.symptom;
+                    // let currentList = survey.symptom;
                     symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
                     for(let i=0;i<currentList.length;i++)
@@ -351,7 +351,7 @@ router.post('/register' , async (req,res) => {
                         return;
 
                     }
-                    let currentList = survey.symptom;
+                    // let currentList = survey.symptom;
                     symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
                     for(let i=0;i<currentList.length;i++)
