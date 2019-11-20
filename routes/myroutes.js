@@ -15,7 +15,7 @@ router.post('/register' , async (req,res) => {
             let symptomKiList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
             let surveyObject = new surveyModel({
                 phoneNo : from,
-                symptoms : symptomKiList,
+                symptom : symptomKiList,
                 status : "Enrolled"
 
             })
@@ -34,7 +34,7 @@ router.post('/register' , async (req,res) => {
             {
                 $set:{
                     status : "Enrolled",
-                    symptoms : symptomKiList
+                    symptom : symptomKiList
             }
         });
         console.log("4");
