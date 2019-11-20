@@ -223,13 +223,13 @@ router.post('/register' , async (req,res) => {
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                      $set: {
-                          count : "3",
-                          responseMap: currentMap
-                      }
-                    });
+                    // await surveyModel.findOneAndUpdate({phoneNo : from},
+                    // {
+                    //   $set: {
+                    //       count : "3",
+                    //       responseMap: currentMap
+                    //   }
+                    // });
                       if (currentList.length <= 2) {
                           await client.messages.create({
                               to: from,
@@ -239,7 +239,8 @@ router.post('/register' , async (req,res) => {
                           await surveyModel.findOneAndUpdate({ phoneNo: from },
                               {
                                   $set: {
-                                      count: null
+                                      count: null,
+                                      responseMap: currentMap
                                   }
                               });
                       }
@@ -256,7 +257,8 @@ router.post('/register' , async (req,res) => {
                       await surveyModel.findOneAndUpdate({ phoneNo: from },
                           {
                               $set: {
-                                  count: "2"
+                                  count: "2",
+                                  responseMap: currentMap
                               }
                           });
 
@@ -273,13 +275,13 @@ router.post('/register' , async (req,res) => {
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                      $set: {
-                          count : "3",
-                          responseMap: currentMap
-                      }
-                    });
+                    // await surveyModel.findOneAndUpdate({phoneNo : from},
+                    // {
+                    //   $set: {
+                    //       count : "3",
+                    //       responseMap: currentMap
+                    //   }
+                    // });
                     if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
@@ -289,7 +291,8 @@ router.post('/register' , async (req,res) => {
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
-                                    count: null
+                                    count: null,
+                                    responseMap: currentMap
                                 }
                             });
                     }
@@ -306,7 +309,8 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({ phoneNo: from },
                         {
                             $set: {
-                                count: "2"
+                                count: "2",
+                                responseMap: currentMap
                             }
                         });
 
@@ -327,13 +331,13 @@ router.post('/register' , async (req,res) => {
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                      $set: {
-                          count : "3",
-                          responseMap: currentMap
-                      }
-                    });
+                    // await surveyModel.findOneAndUpdate({phoneNo : from},
+                    // {
+                    //   $set: {
+                    //       count : "3",
+                    //       responseMap: currentMap
+                    //   }
+                    // });
                     if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
@@ -343,7 +347,8 @@ router.post('/register' , async (req,res) => {
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
-                                    count: null
+                                    count: null,
+                                    responseMap: currentMap
                                 }
                             });
                     }
@@ -360,7 +365,8 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({ phoneNo: from },
                         {
                             $set: {
-                                count: "2"
+                                count: "2",
+                                responseMap: currentMap
                             }
                         });
 
@@ -376,13 +382,13 @@ router.post('/register' , async (req,res) => {
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                      $set: {
-                          count : "3",
-                          responseMap: currentMap
-                      }
-                    });
+                    // await surveyModel.findOneAndUpdate({phoneNo : from},
+                    // {
+                    //   $set: {
+                    //       count : "3",
+                    //       responseMap: currentMap
+                    //   }
+                    // });
 
                     let currentList = survey.symptom;
                     if (currentList.length <= 2) {
@@ -394,7 +400,8 @@ router.post('/register' , async (req,res) => {
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
-                                    count: null
+                                    count: null,
+                                    responseMap: currentMap
                                 }
                             });
                     }
@@ -411,7 +418,8 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({ phoneNo: from },
                         {
                             $set: {
-                                count: "2"
+                                count: "2",
+                                responseMap: currentMap
                             }
                         });
 
