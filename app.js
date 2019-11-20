@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-var morgan = require('morgan');
+var logger = require('morgan');
 var mongoose = require('mongoose');
 var urlencoded = require('body-parser').urlencoded;
 var config = require('./config');
