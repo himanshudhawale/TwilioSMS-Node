@@ -66,8 +66,8 @@ router.post('/register' , async (req,res) => {
 
 
             case "AwaitingSymptom":
-                let symptomList = survey.symptom;
-                let symp = symptomList[msgBody-1];
+                let symptomList1 = survey.symptom;
+                let symp = symptomList1[msgBody-1];
                 await client.messages.create({
                         to : from,
                         from : '+19067537001',
