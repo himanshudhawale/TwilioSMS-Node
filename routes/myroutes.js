@@ -27,7 +27,7 @@ router.post('/register' , async (req,res) => {
             console.log("2");
             survey = await surveyObject.save();
             console.log("3");
-            // sendSymptomSMS();
+            sendSymptomSMS();
     }
     // if(survey && messageBody=="START"){
     //     let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
@@ -98,6 +98,7 @@ router.post('/register' , async (req,res) => {
         //     console.log("6");
     }
 
+    if (survey) {
 
     switch(survey.count)
     {
@@ -268,6 +269,7 @@ router.post('/register' , async (req,res) => {
            }
                 break;
     }
+  }
 
     async function sendSymptomSMS(){
           let currentList = survey.symptom;
@@ -289,6 +291,8 @@ router.post('/register' , async (req,res) => {
                           count: null
                       }
               });
+              res.end();
+            return;
 
           }
           let currentString = "Please indicate your symptom ";
@@ -306,7 +310,6 @@ router.post('/register' , async (req,res) => {
               {
                   $set:{
                       count : "2"
-
                   }
               });
           console.log("6");
