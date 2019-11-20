@@ -129,7 +129,7 @@ router.post('/register' , async (req,res) => {
                         body : "You do not have a " + survey.currentResponse});
 
                     let currentMap = survey.responseMap;
-                    currentMap.set(symp, messageBody);
+                    currentMap.set(survey.currentResponse, messageBody);
 
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
@@ -148,7 +148,7 @@ router.post('/register' , async (req,res) => {
                         body : "You have a mild " + survey.currentResponse});
 
                     let currentMap = survey.responseMap;
-                    currentMap.set(symp, messageBody);
+                    currentMap.set(survey.currentResponse, messageBody);
 
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
@@ -167,7 +167,7 @@ router.post('/register' , async (req,res) => {
                         body : "You have a moderate " + survey.currentResponse});
 
                     let currentMap = survey.responseMap;
-                    currentMap.set(symp, messageBody);
+                    currentMap.set(survey.currentResponse, messageBody);
 
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
@@ -185,7 +185,7 @@ router.post('/register' , async (req,res) => {
                         body : "You have a severe " + survey.currentResponse});
 
                     let currentMap = survey.responseMap;
-                    currentMap.set(symp, messageBody);
+                    currentMap.set(survey.currentResponse, messageBody);
 
 
                     await surveyModel.findOneAndUpdate({phoneNo : from},
