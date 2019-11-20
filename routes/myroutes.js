@@ -38,7 +38,7 @@ router.post('/register' , async (req,res) => {
     //         }
     //     });
     //     console.log("4");
-    }
+    // }
     switch(survey.count)
     {
       //Enrolled
