@@ -5,6 +5,7 @@ const surveyModel = require('../models/surveySchema');
 const client = require('twilio')(accountSID,authToken);
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
+let currentList=[]
 router.post('/register' , async (req,res) => {
 
     let from =  req.body.From;
