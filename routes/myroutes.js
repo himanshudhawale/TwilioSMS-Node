@@ -109,6 +109,10 @@ router.post('/register' , async (req,res) => {
               case "3":
                   sendReportSMS()
                   break;
+
+              case "null":
+                   sendSymptomSMS()
+                   break;
           }
   }
 
