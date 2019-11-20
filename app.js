@@ -1,12 +1,11 @@
-var path = require('path');
 var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
-var mongoose = require('mongoose');
-var urlencoded = require('body-parser').urlencoded;
-var config = require('./config');
-var message = require('./routes/route');
-var Promise = require('bluebird');
+var bodyParser = require('body-parser');
 var cors=require('cors');
+var routes = require('./routes/route');
+var MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 var app = express();
 
