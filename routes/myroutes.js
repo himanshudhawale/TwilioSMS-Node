@@ -170,9 +170,9 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({ phoneNo: from },
                         {
                             $set: {
-                                status: "3",
+                                count: "3",
                                 currentSymptom: symp,
-                                symptoms: ss
+                                symptom: ss
                             }
                         });
                 }
@@ -183,17 +183,17 @@ router.post('/register' , async (req,res) => {
                         body: "Please enter a number from 0 to " + currentList1.length
                     });
                 }
-                let symp = currentList1[messageBody-1];
-
-                await surveyModel.findOneAndUpdate({phoneNo : from},
-                        {
-                            $set:{
-                                    count : "3",
-                                    currentResponse: symp,
-                                    responseMap : currentMap,
-                                    symptom : ss
-                            }
-                        });
+                // let symp = currentList1[messageBody-1];
+                //
+                // await surveyModel.findOneAndUpdate({phoneNo : from},
+                //         {
+                //             $set:{
+                //                     count : "3",
+                //                     currentResponse: symp,
+                //                     responseMap : currentMap,
+                //                     symptom : ss
+                //             }
+                //         });
                 break;
 
 //scale of symptom
