@@ -180,7 +180,7 @@ router.post('/register' , async (req,res) => {
                         {
                             $set: {
                                 count: "3",
-                                currentSymptom: symp,
+                                currentResponse: symp,
                                 symptom: ss,
                                 responseMap: currentMap
                             }
