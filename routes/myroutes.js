@@ -110,9 +110,9 @@ router.post('/register' , async (req,res) => {
                   sendReportSMS()
                   break;
 
-              case "null":
-                   sendSymptomSMS()
-                   break;
+              // case "null":
+              //      sendSymptomSMS()
+              //      break;
           }
   }
 
@@ -251,6 +251,16 @@ router.post('/register' , async (req,res) => {
                 body: "Please enter a number from 0 to 4"
             });
 
+        }
+        else if(messageBody == "START"){
+          let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
+          await surveyModel.findOneAndUpdate({phoneNo : from},
+              {
+                  $set:{
+                      count : "1",
+                      symptom : currentList
+              }
+          });
         }
 
 
