@@ -121,6 +121,7 @@ router.post('/register' , async (req,res) => {
 
 //scale of symptom
             case "3":
+            //do not have 
                 if(messageBody ==0){
 
                     await client.messages.create({
@@ -141,6 +142,7 @@ router.post('/register' , async (req,res) => {
                     sendSymptomSMS(survey);
 
                 }
+                //mild
               else if(messageBody >=1 && messageBody <=2){
                     await client.messages.create({
                         to : from,
@@ -160,6 +162,7 @@ router.post('/register' , async (req,res) => {
 
                     sendSymptomSMS(survey);
                 }
+                //moderate
               else if(messageBody == 3){
                     await client.messages.create({
                         to : from,
@@ -178,6 +181,7 @@ router.post('/register' , async (req,res) => {
                     });
                     sendSymptomSMS(survey);
                 }
+                //severe
               else if(messageBody == 4){
                     await client.messages.create({
                         to : from,
@@ -197,6 +201,7 @@ router.post('/register' , async (req,res) => {
                     });
                     sendSymptomSMS(survey);
                 }
+                //Edge case
             else {
                await client.messages.create({
                    to: from,
