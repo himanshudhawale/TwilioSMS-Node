@@ -90,7 +90,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
-                                count : 1
+                                count : "2"
                             }
                         });
                     console.log("6");
