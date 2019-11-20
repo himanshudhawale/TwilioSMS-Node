@@ -19,9 +19,7 @@ mongoose.connect(
 );
 
 
-
-
-app.use('/api/twilio',  twilioRoutes);
+app.use('/twilio',  twilioRoutes);
 
 app.use(express.json());
-app.listen(port, ()=> console.log('Server Up. Listening to port 500'));
+app.listen(port, ()=> console.log('Server Up. Listening to port 5000'));
