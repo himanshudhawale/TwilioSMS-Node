@@ -81,11 +81,11 @@ router.post('/register' , async (req,res) => {
             console.log("5");
             let currentMap = survey.responseMap;
 
-            let symp = currentList1[messageBody - 1];
+            let symp = currentList[messageBody - 1];
 
             currentMap.set(symp, "-1");
 
-            var ss = currentList1.filter(e => e !== symp);
+            var ss = currentList.filter(e => e !== symp);
 
             await surveyModel.findOneAndUpdate({phoneNo : from},
               {
