@@ -27,7 +27,7 @@ router.post('/register' , async (req,res) => {
             console.log("2");
             survey = await surveyObject.save();
             console.log("3");
-            sendSymptomSMS();
+            // sendSymptomSMS();
     }
     // if(survey && messageBody=="START"){
     //     let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
@@ -220,7 +220,7 @@ router.post('/register' , async (req,res) => {
 
 
 
-                    sendSymptomSMS2();
+                    sendSymptomSMS();
 
                 }
                 //mild
@@ -231,7 +231,7 @@ router.post('/register' , async (req,res) => {
                         body : "You have a mild " + survey.currentResponse});
 
 
-                        sendSymptomSMS2();
+                        sendSymptomSMS();
 
                     // sendSymptomSMS(survey);
 
@@ -243,7 +243,7 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a moderate " + survey.currentResponse});
 
-                        sendSymptomSMS2();
+                        sendSymptomSMS();
 
 
                 }
@@ -255,7 +255,7 @@ router.post('/register' , async (req,res) => {
                         body : "You have a severe " + survey.currentResponse});
 
 
-                    sendSymptomSMS2();
+                    sendSymptomSMS();
 
                 }
                 //Edge case
@@ -314,52 +314,52 @@ router.post('/register' , async (req,res) => {
 
     };
 
-
-async function sendSymptomSMS2(){
-  let currentList = survey.symptom;
-
-  let currentMap = survey.responseMap;
-  currentMap.set(survey.currentResponse, messageBody);
-
-  // await surveyModel.findOneAndUpdate({phoneNo : from},
-  // {
-  //   $set: {
-  //       count : "3",
-  //       responseMap: currentMap
-  //   }
-  // });
-    if (currentList.length <= 2) {
-        await client.messages.create({
-            to: from,
-            from: '+19067537001',
-            body: "Thank you and see you soon"
-        });
-        await surveyModel.findOneAndUpdate({ phoneNo: from },
-            {
-                $set: {
-                    count: null,
-                    responseMap: currentMap
-                }
-            });
-    }
-    let currentString = "Please indicate your symptom ";
-    for (let i = 0; i < currentList.length; i++) {
-        currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
-    }
-    currentString += "(0) None";
-    await client.messages.create({
-        to: from,
-        from: '+19067537001',
-        body: currentString
-    })
-    await surveyModel.findOneAndUpdate({ phoneNo: from },
-        {
-            $set: {
-                count: "2",
-                responseMap: currentMap
-            }
-        });
-};
+// 
+// async function sendSymptomSMS2(){
+//   let currentList = survey.symptom;
+//
+//   let currentMap = survey.responseMap;
+//   currentMap.set(survey.currentResponse, messageBody);
+//
+//   // await surveyModel.findOneAndUpdate({phoneNo : from},
+//   // {
+//   //   $set: {
+//   //       count : "3",
+//   //       responseMap: currentMap
+//   //   }
+//   // });
+//     if (currentList.length <= 2) {
+//         await client.messages.create({
+//             to: from,
+//             from: '+19067537001',
+//             body: "Thank you and see you soon"
+//         });
+//         await surveyModel.findOneAndUpdate({ phoneNo: from },
+//             {
+//                 $set: {
+//                     count: null,
+//                     responseMap: currentMap
+//                 }
+//             });
+//     }
+//     let currentString = "Please indicate your symptom ";
+//     for (let i = 0; i < currentList.length; i++) {
+//         currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
+//     }
+//     currentString += "(0) None";
+//     await client.messages.create({
+//         to: from,
+//         from: '+19067537001',
+//         body: currentString
+//     })
+//     await surveyModel.findOneAndUpdate({ phoneNo: from },
+//         {
+//             $set: {
+//                 count: "2",
+//                 responseMap: currentMap
+//             }
+//         });
+// };
 
 
 

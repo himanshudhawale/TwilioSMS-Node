@@ -9,11 +9,11 @@ const surveySchema = new Schema({
     symptom: {
       type: Object
     },
-    responseMap: {
-        type: Map,
-        of: String,
-        default: {}
-    },
+    // responseMap: {
+    //     type: Map,
+    //     of: String,
+    //     default: {}
+    // },
     currentResponse: {
       type: String
     },
