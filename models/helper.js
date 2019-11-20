@@ -16,7 +16,7 @@ saveResponse1:function(no,response,callback) {
     tt.response1 = response;
     tt.count = 1;
     Object.assign(twilio,tt);
-    await twilio.save();
+    twilio.save();
     return (twilio, callback);
 },
 
