@@ -40,7 +40,7 @@ router.post('/register' , async (req,res) => {
             }
         });
         console.log("4");
-        // sendSymptomSMS();
+        // sendSyxmptomSMS();
 
     }
 
@@ -178,10 +178,12 @@ router.post('/register' , async (req,res) => {
                 from: '+19067537001',
                 body: "Thank you and we will check with you later."
             });
+            let xsxs = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
             await surveyModel.findOneAndUpdate({ phoneNo: from },
                 {
                     $set: {
-                        count: null
+                        count: null,
+                        symptom: xsxs
                     }
                 });
 
