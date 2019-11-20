@@ -216,7 +216,7 @@ router.post('/register' , async (req,res) => {
 
 
 
-                      currentList = survey.symptom;
+                    let currentList = survey.symptom;
 
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
@@ -266,7 +266,7 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a mild " + survey.currentResponse});
 
-                    currentList = survey.symptom;
+                    let currentList = survey.symptom;
 
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
@@ -320,7 +320,7 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a moderate " + survey.currentResponse});
 
-                    currentList = survey.symptom;
+                    let currentList = survey.symptom;
 
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
@@ -382,7 +382,7 @@ router.post('/register' , async (req,res) => {
                       }
                     });
 
-                    currentList = survey.symptom;
+                    let currentList = survey.symptom;
                     if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
