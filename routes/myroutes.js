@@ -121,7 +121,7 @@ router.post('/register' , async (req,res) => {
 
 //scale of symptom
             case "3":
-            //do not have 
+            //do not have
                 if(messageBody ==0){
 
                     await client.messages.create({
@@ -215,6 +215,7 @@ router.post('/register' , async (req,res) => {
 });
 
 async function sendSymptomSMS(survey){
+        let currentList = survey.symptom;
         symptomList = survey.symptom;
         let currentString = "Please indicate your symptom ";
         for(let i=0;i<currentList.length;i++)
