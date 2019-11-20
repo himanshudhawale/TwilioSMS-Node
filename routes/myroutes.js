@@ -40,6 +40,8 @@ router.post('/register' , async (req,res) => {
             }
         });
         console.log("4");
+        // sendSymptomSMS();
+
     }
 
 
@@ -53,7 +55,7 @@ router.post('/register' , async (req,res) => {
             }
         });
         console.log("4");
-        // sendSymptomSMS();
+        sendSymptomSMS();
         // currentList = survey.symptom;
         // if(currentList.length<=2)
         // {
@@ -252,16 +254,16 @@ router.post('/register' , async (req,res) => {
             });
 
         }
-        else if(messageBody == "START"){
-          let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
-          await surveyModel.findOneAndUpdate({phoneNo : from},
-              {
-                  $set:{
-                      count : "1",
-                      symptom : currentList
-              }
-          });
-        }
+        // else if(messageBody == "START"){
+        //   let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
+        //   await surveyModel.findOneAndUpdate({phoneNo : from},
+        //       {
+        //           $set:{
+        //               count : "1",
+        //               symptom : currentList
+        //       }
+        //   });
+        // }
 
 
     };
