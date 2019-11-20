@@ -39,6 +39,21 @@ router.post('/register' , async (req,res) => {
     //     });
     //     console.log("4");
     // }
+
+
+    if(survey && messageBody=="START"){
+        let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
+        await surveyModel.findOneAndUpdate({phoneNo : from},
+            {
+                $set:{
+                    count : "1",
+                    symptom : currentList
+            }
+        });
+        console.log("4");
+    }
+
+
     switch(survey.count)
     {
       //Enrolled
