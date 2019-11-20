@@ -7,7 +7,7 @@ const surveySchema = new Schema({
       type : String
     },
     symptom: {
-      type: String
+      type: Object
     },
     response1:{
       type: String
