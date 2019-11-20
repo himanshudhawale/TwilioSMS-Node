@@ -170,6 +170,10 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You do not have a " + survey.currentResponse});
 
+
+
+                      currentList = survey.symptom;
+
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
@@ -180,50 +184,37 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    // sendSymptomSMS(survey);
-
-
-
-                    let currentList = survey.symptom;
-                    if(currentList.length<=2)
-                    {
-                        await client.messages.create({
-                            to: from,
-                            from: '+19067537001',
-                            body: "Thank you and see you soon"
-                        });
-                        // await client.messages.create({
-                        //     to : from,
-                        //     from : '+19067537001',
-                        //     body : currentString})
-                        // console.log("5");
-                        await surveyModel.findOneAndUpdate({ phoneNo: from },
-                            {
-                                $set: {
-                                    count: null
-                                }
-                        });
-                        return;
-
-                    }
-                    // let currentList = survey.symptom;
-                    symptomList = survey.symptom;
-                    let currentString = "Please indicate your symptom ";
-                    for(let i=0;i<currentList.length;i++)
-                    {
-                        currentString+= "("+(i+1)+")"+ currentList[i] + ", "
-                    }
-                    currentString+= "(0) None";
-                    await client.messages.create({
-                        to : from,
-                        from : '+19067537001',
-                        body : currentString})
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                            $set:{
-                                count : "2"
-                            }
-                    });
+                      if (currentList.length <= 2) {
+                          await client.messages.create({
+                              to: from,
+                              from: '+19067537001',
+                              body: "Thank you and see you soon"
+                          });
+                          await surveyModel.findOneAndUpdate({ phoneNo: from },
+                              {
+                                  $set: {
+                                      count: null
+                                  }
+                              });
+                          res.end();
+                          return;
+                      }
+                      let currentString = "Please indicate your symptom ";
+                      for (let i = 0; i < currentList.length; i++) {
+                          currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
+                      }
+                      currentString += "(0) None";
+                      await client.messages.create({
+                          to: from,
+                          from: '+19067537001',
+                          body: currentString
+                      })
+                      await surveyModel.findOneAndUpdate({ phoneNo: from },
+                          {
+                              $set: {
+                                  count: "2"
+                              }
+                          });
 
                 }
                 //mild
@@ -233,6 +224,8 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a mild " + survey.currentResponse});
 
+                    currentList = survey.symptom;
+
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
@@ -243,49 +236,42 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-
-
-                    // sendSymptomSMS(survey);
-                    let currentList = survey.symptom;
-                    if(currentList.length<=2)
-                    {
+                    if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
                             from: '+19067537001',
                             body: "Thank you and see you soon"
                         });
-                        // await client.messages.create({
-                        //     to : from,
-                        //     from : '+19067537001',
-                        //     body : currentString})
-                        // console.log("5");
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
                                     count: null
                                 }
-                        });
+                            });
+                        res.end();
                         return;
-
                     }
-                    // let currentList = survey.symptom;
-                    symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
-                    for(let i=0;i<currentList.length;i++)
-                    {
-                        currentString+= "("+(i+1)+")"+ currentList[i] + ", "
+                    for (let i = 0; i < currentList.length; i++) {
+                        currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
                     }
-                    currentString+= "(0) None";
+                    currentString += "(0) None";
                     await client.messages.create({
-                        to : from,
-                        from : '+19067537001',
-                        body : currentString})
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                            $set:{
-                                count : "2"
+                        to: from,
+                        from: '+19067537001',
+                        body: currentString
+                    })
+                    await surveyModel.findOneAndUpdate({ phoneNo: from },
+                        {
+                            $set: {
+                                count: "2"
                             }
-                    });
+                        });
+
+
+
+                    // sendSymptomSMS(survey);
+
                 }
                 //moderate
               else if(messageBody == 3){
@@ -294,6 +280,8 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a moderate " + survey.currentResponse});
 
+                    currentList = survey.symptom;
+
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
 
@@ -304,47 +292,38 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    // sendSymptomSMS(survey);
-                    let currentList = survey.symptom;
-                    if(currentList.length<=2)
-                    {
+                    if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
                             from: '+19067537001',
                             body: "Thank you and see you soon"
                         });
-                        // await client.messages.create({
-                        //     to : from,
-                        //     from : '+19067537001',
-                        //     body : currentString})
-                        // console.log("5");
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
                                     count: null
                                 }
-                        });
+                            });
+                        res.end();
                         return;
-
                     }
-                    // let currentList = survey.symptom;
-                    symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
-                    for(let i=0;i<currentList.length;i++)
-                    {
-                        currentString+= "("+(i+1)+")"+ currentList[i] + ", "
+                    for (let i = 0; i < currentList.length; i++) {
+                        currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
                     }
-                    currentString+= "(0) None";
+                    currentString += "(0) None";
                     await client.messages.create({
-                        to : from,
-                        from : '+19067537001',
-                        body : currentString})
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                            $set:{
-                                count : "2"
+                        to: from,
+                        from: '+19067537001',
+                        body: currentString
+                    })
+                    await surveyModel.findOneAndUpdate({ phoneNo: from },
+                        {
+                            $set: {
+                                count: "2"
                             }
-                    });
+                        });
+
                 }
                 //severe
               else if(messageBody == 4){
@@ -353,9 +332,9 @@ router.post('/register' , async (req,res) => {
                         from : '+19067537001',
                         body : "You have a severe " + survey.currentResponse});
 
+
                     let currentMap = survey.responseMap;
                     currentMap.set(survey.currentResponse, messageBody);
-
 
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
@@ -364,47 +343,41 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    // sendSymptomSMS(survey);
-                    let currentList = survey.symptom;
-                    if(currentList.length<=2)
-                    {
+
+                    currentList = survey.symptom;
+                    if (currentList.length <= 2) {
                         await client.messages.create({
                             to: from,
                             from: '+19067537001',
                             body: "Thank you and see you soon"
                         });
-                        // await client.messages.create({
-                        //     to : from,
-                        //     from : '+19067537001',
-                        //     body : currentString})
-                        // console.log("5");
                         await surveyModel.findOneAndUpdate({ phoneNo: from },
                             {
                                 $set: {
                                     count: null
                                 }
-                        });
+                            });
+                        res.end();
                         return;
-
                     }
-                    // let currentList = survey.symptom;
-                    symptomList = survey.symptom;
                     let currentString = "Please indicate your symptom ";
-                    for(let i=0;i<currentList.length;i++)
-                    {
-                        currentString+= "("+(i+1)+")"+ currentList[i] + ", "
+                    for (let i = 0; i < currentList.length; i++) {
+                        currentString += "(" + (i + 1) + ")" + currentList[i] + ", "
                     }
-                    currentString+= "(0) None";
+                    currentString += "(0) None";
                     await client.messages.create({
-                        to : from,
-                        from : '+19067537001',
-                        body : currentString})
-                    await surveyModel.findOneAndUpdate({phoneNo : from},
-                    {
-                            $set:{
-                                count : "2"
+                        to: from,
+                        from: '+19067537001',
+                        body: currentString
+                    })
+                    await surveyModel.findOneAndUpdate({ phoneNo: from },
+                        {
+                            $set: {
+                                count: "2"
                             }
-                    });
+                        });
+
+
                 }
                 //Edge case
             else {
