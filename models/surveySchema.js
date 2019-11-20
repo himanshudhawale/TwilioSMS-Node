@@ -9,25 +9,15 @@ const surveySchema = new Schema({
     symptom: {
       type: Object
     },
-    response1:{
+    responseMap: {
+        type: Map,
+        of: String,
+        default: {}
+    },
+    currentResponse: {
       type: String
     },
-    response2:{
-      type: String
-    },
-    response3: {
-      type: String
-    },
-    rank1: {
-      type: String
-    },
-    rank2: {
-      type: String
-    },
-    rank3: {
-      type: String
-    },
-    status: {
+    count: {
       type: String
     }
 });

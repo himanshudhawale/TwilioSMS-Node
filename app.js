@@ -14,7 +14,7 @@ const twilioRoutes = require( './routes/myroutes');
 
 mongoose.connect(
     process.env.DB_CONNECT, { useNewUrlParser:true , useUnifiedTopology: true } , ()=>{
-        console.log('Connected to DB');
+        console.log('Connected to MongoDB :3');
     }
 );
 
@@ -22,4 +22,4 @@ mongoose.connect(
 app.use('/twilio',  twilioRoutes);
 
 app.use(express.json());
-app.listen(port, ()=> console.log('Server Up. Listening to port 5000'));
+app.listen(port, ()=> console.log('Server is running. Listening to port 5000'));
