@@ -8,6 +8,7 @@ var message = require('./routes/route');
 var Promise = require('bluebird');
 var cors=require('cors');
 
+var app = express();
 
 // use node A+ promises
 mongoose.Promise = Promise;
