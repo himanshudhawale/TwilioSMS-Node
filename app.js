@@ -1,25 +1,27 @@
-var express = require('express');
-var path = require('path');
+const express=require('express');
+const app=express();
 const mongoose = require('mongoose');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var cors=require('cors');
-var routes = require('./routes/route');
-var MessagingResponse = require('twilio').twiml.MessagingResponse;
+const dotenv= require('dotenv');
+const bodyParser = require('body-parser');
+dotenv.config();
+const accountSID = process.env.ACCOUNT_SID;
+const port = process.env.PORT || 5000;
+const authToken = process.env.AUHT_TOKEN;
+const client = require('twilio')(accountSID,authToken);
 
-var app = express();
+app.use(bodyParser.urlencoded({extended:false}));
+const twilioRoutes = require( './routes/myroutes');
 
-// use node A+ promises
-mongoose.Promise = Promise;
+mongoose.connect(
+    process.env.DB_CONNECT, { useNewUrlParser:true , useUnifiedTopology: true } , ()=>{
+        console.log('Connected to DB');
+    }
+);
 
-mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
-app.use(cors());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 
-module.exports = app;
+app.use('/api/twilio',  twilioRoutes);
+
+app.use(express.json());
+app.listen(port, ()=> console.log('Server Up. Listening to port 8080.........'));
