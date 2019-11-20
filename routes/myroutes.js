@@ -138,6 +138,7 @@ router.post('/register' , async (req,res) => {
                         {
                             $set:{
                                 count : "2"
+
                             }
                         });
                     console.log("6");
@@ -180,7 +181,8 @@ router.post('/register' , async (req,res) => {
                             $set: {
                                 count: "3",
                                 currentSymptom: symp,
-                                symptom: ss
+                                symptom: ss,
+                                responseMap: currentMap
                             }
                         });
                 }
