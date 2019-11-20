@@ -185,6 +185,8 @@ router.post('/register' , async (req,res) => {
                         body: "Please enter a number from 0 to " + currentList1.length
                     });
                 }
+                let symp = currentList1[messageBody-1];
+
                 await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
