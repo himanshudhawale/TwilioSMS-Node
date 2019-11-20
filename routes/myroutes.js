@@ -143,7 +143,7 @@ router.post('/register' , async (req,res) => {
                 // let symp = currentList1[messageBody-1];
                 let currentMap = survey.responseMap;
                 currentMap.set(symp, "-1");
-                let ss = currentList1.filter(e => e !== symp);
+                // let ss = currentList1.filter(e => e !== symp);
 
                 if (messageBody == 0) {
                 await client.messages.create({
