@@ -99,7 +99,7 @@ router.post('/register' , async (req,res) => {
     }
 
     if (survey) {
-          switch (survey.status) {
+          switch (survey.count) {
 
               case "2":
                   sendScaleSMS()
