@@ -142,7 +142,7 @@ router.post('/register' , async (req,res) => {
                 let currentList1 = survey.symptom;
                 // let symp = currentList1[messageBody-1];
                 let currentMap = survey.responseMap;
-                currentMap.set(symp, "-1");
+                // currentMap.set(symp, "-1");
                 // let ss = currentList1.filter(e => e !== symp);
 
                 if (messageBody == 0) {
@@ -161,6 +161,8 @@ router.post('/register' , async (req,res) => {
                 }
                 else if (messageBody > 0 && messageBody <= currentList1.length) {
                     let symp = currentList1[messageBody - 1];
+                    currentMap.set(symp, "-1");
+
                     await client.messages.create({
                         to: from,
                         from: '+19067537001',
