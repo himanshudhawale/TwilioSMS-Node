@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
+const mongoose = require('mongoose');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cors=require('cors');
@@ -14,8 +14,6 @@ mongoose.Promise = Promise;
 
 mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
