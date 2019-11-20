@@ -6,20 +6,23 @@ var urlencoded = require('body-parser').urlencoded;
 var config = require('./config');
 var message = require('./routes/route');
 var Promise = require('bluebird');
+var cors=require('cors');
+
 
 // use node A+ promises
 mongoose.Promise = Promise;
 
 mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
-// Create Express web app with some useful middleware
-var app = express();
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(cors());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(urlencoded({ extended: true }));
-app.use(morgan('combined'));
 
-// Twilio Webhook routes
-
-app.post('/message', message);
+app.use('/', routes);
 
 module.exports = app;
