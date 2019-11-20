@@ -28,16 +28,16 @@ router.post('/register' , async (req,res) => {
             survey = await surveyObject.save();
             console.log("3");
     }
-    if(survey && messageBody=="START"){
-        let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
-        await surveyModel.findOneAndUpdate({phoneNo : from},
-            {
-                $set:{
-                    count : "1",
-                    symptom : currentList
-            }
-        });
-        console.log("4");
+    // if(survey && messageBody=="START"){
+    //     let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
+    //     await surveyModel.findOneAndUpdate({phoneNo : from},
+    //         {
+    //             $set:{
+    //                 count : "1",
+    //                 symptom : currentList
+    //         }
+    //     });
+    //     console.log("4");
     }
     switch(survey.count)
     {
@@ -58,7 +58,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
-                                status : null
+                                count : null
                             }
                         });
                     console.log("6");
@@ -77,7 +77,7 @@ router.post('/register' , async (req,res) => {
                 await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
-                                    status : "3",
+                                    count : "3",
                                     currentResponse: symp,
                                     responseMap : currentMap,
                                     symptom : symp
@@ -100,7 +100,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
                       $set: {
-                          status : "3",
+                          count : "3",
                           responseMap: currentMap
                       }
                     });
@@ -119,7 +119,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
                       $set: {
-                          status : "3",
+                          count : "3",
                           responseMap: currentMap
                       }
                     });
@@ -138,7 +138,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
                       $set: {
-                          status : "3",
+                          count : "3",
                           responseMap: currentMap
                       }
                     });
@@ -157,7 +157,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                     {
                       $set: {
-                          status : "3",
+                          count : "3",
                           responseMap: currentMap
                       }
                     });
@@ -190,7 +190,7 @@ async function sendSymptomSMS(){
         await surveyModel.findOneAndUpdate({phoneNo : from},
         {
                 $set:{
-                    status : "2"
+                    count : "2"
                 }
         });
     }
