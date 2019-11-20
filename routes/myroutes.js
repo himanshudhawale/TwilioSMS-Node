@@ -58,7 +58,7 @@ router.post('/register' , async (req,res) => {
                     await surveyModel.findOneAndUpdate({phoneNo : from},
                         {
                             $set:{
-                                status : "2"
+                                status : null;
                             }
                         });
                     console.log("6");
@@ -104,7 +104,7 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    sendSymptomSMS()
+                    sendSymptomSMS();
 
                 }
               else if(messageBody >=1 && messageBody <=2){
@@ -124,7 +124,7 @@ router.post('/register' , async (req,res) => {
                       }
                     });
 
-                    sendSymptomSMS()
+                    sendSymptomSMS();
                 }
               else if(messageBody == 3){
                     await client.messages.create({
@@ -142,7 +142,7 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    sendSymptomSMS()
+                    sendSymptomSMS();
                 }
               else if(messageBody == 4){
                     await client.messages.create({
@@ -161,7 +161,7 @@ router.post('/register' , async (req,res) => {
                           responseMap: currentMap
                       }
                     });
-                    sendSymptomSMS()
+                    sendSymptomSMS();
                 }
             else {
                await client.messages.create({
