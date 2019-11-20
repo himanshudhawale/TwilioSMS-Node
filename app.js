@@ -4,15 +4,13 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var urlencoded = require('body-parser').urlencoded;
 var config = require('./config');
-var voice = require('./routes/voice');
-var message = require('./routes/message');
-var results = require('./routes/results');
+var message = require('./routes/route');
 var Promise = require('bluebird');
 
 // use node A+ promises
-mongoose.Promise = Promise;
-
-mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
+// mongoose.Promise = Promise;
+//
+// mongoose.connect('mongodb://127.0.0.1:27017/inclass?compressors=zlib&gssapiServiceName=mongodb');
 
 // Create Express web app with some useful middleware
 var app = express();
@@ -21,11 +19,7 @@ app.use(urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
 // Twilio Webhook routes
-app.post('/voice', voice.interview);
-app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
-app.post('/message', message);
 
-// Ajax route to aggregate response data for the UI
-app.get('/results', results);
+app.post('/message', message);
 
 module.exports = app;
