@@ -169,7 +169,7 @@ router.post('/register' , async (req,res) => {
                         body: "On a scale from 0 (none) to 4 (severe), how would you rate your " + symp + " in the last 24 hours?"
                     });
                     var ss = currentList1.filter(e => e !== symp);
-                    await phoneModel.findOneAndUpdate({ phoneNo: from },
+                    await surveyModel.findOneAndUpdate({ phoneNo: from },
                         {
                             $set: {
                                 status: "3",
