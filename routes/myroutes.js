@@ -126,6 +126,13 @@ router.post('/register' , async (req,res) => {
               //     from : '+19067537001',
               //     body : currentString})
               // console.log("5");
+              await surveyModel.findOneAndUpdate({ phoneNo : from},
+                {
+                  $set : {
+                    count : "null"
+                  }
+
+              });
               await surveyModel.findOneAndUpdate({ phoneNo: from },
                   {
                       $set: {
