@@ -58,7 +58,7 @@ router.post('/register' , async (req,res) => {
             to: from,
             from: '+19067537001',
             body: "Thank you and see you soon"
-          );
+           });
 
           await surveyModel.findOneAndUpdate({ phoneNo: from },
           {
@@ -68,7 +68,7 @@ router.post('/register' , async (req,res) => {
           });
              return;
 
-          }
+        }
           let currentString = "Please indicate your symptom ";
           for(let i=0;i<currentList.length;i++)
             {
