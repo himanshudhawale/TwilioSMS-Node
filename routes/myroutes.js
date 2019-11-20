@@ -43,7 +43,7 @@ router.post('/register' , async (req,res) => {
     switch(survey.status)
     {
             case "Enrolled":
-                    let symptomList = phone.symptoms;
+                    let symptomList = survey.symptoms;
                     let symptString = "Please indicate your symptom ";
                     for(let i=0;i<symptomList.length;i++)
                     {
@@ -66,7 +66,7 @@ router.post('/register' , async (req,res) => {
 
 
             case "AwaitingSymptom":
-                let symptomList = phone.symptoms;
+                let symptomList = survey.symptoms;
                 let symp = symptomList[msgBody-1];
                 await client.messages.create({
                         to : from,
