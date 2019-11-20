@@ -240,7 +240,7 @@ router.post('/register' , async (req,res) => {
             });
             sendSymptomSMS();
         }
-        else {
+        else if(messageBody != "START") {
             await client.messages.create({
                 to: from,
                 from: '+19067537001',
