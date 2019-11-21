@@ -30,7 +30,7 @@ router.post('/register' , async (req,res) => {
             console.log("3");
             sendSymptomSMS();
     }
-    if(survey && messageBody=="START"){
+    else if(survey && messageBody=="START"){
         let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
         await surveyModel.findOneAndUpdate({phoneNo : from},
             {
@@ -45,7 +45,7 @@ router.post('/register' , async (req,res) => {
     }
 
 
-    if(survey && messageBody=="START"){
+    else if(survey && messageBody=="START"){
         let currentList = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
         await surveyModel.findOneAndUpdate({phoneNo : from},
             {
