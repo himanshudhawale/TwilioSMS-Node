@@ -139,10 +139,14 @@ router.post('/register' , async (req,res) => {
                   }
 
               });
+              let xsxs = ['Headache', 'Dizziness', 'Nausea', 'Fatigue', 'Sadness'];
+
               await surveyModel.findOneAndUpdate({ phoneNo: from },
                   {
                       $set: {
-                          count: null
+                          count: null,
+                          symptom: xsxs
+                          
                       }
               });
               res.end();
